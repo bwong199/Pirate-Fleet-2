@@ -32,6 +32,12 @@ struct Ship {
             occupiedCells.append(start)
             occupiedCells.append(end)
             
+            for x in start.x...end.x {
+                for y in start.y...end.y {
+                    occupiedCells.append(GridLocation(x: x, y: y))
+                }
+            }
+            
             return occupiedCells
             
         }
@@ -131,16 +137,16 @@ class ControlCenter {
         let mediumShip2 = Ship(length: 3, location: GridLocation(x: 3, y: 1), isVertical: false, isWooden: false)
         human.addShipToGrid(mediumShip2)
         
-        let largeShip = Ship(length: 4, location: GridLocation(x: 6, y: 3), isVertical: true, isWooden: false)
+        let largeShip = Ship(length: 4, location: GridLocation(x: 6, y: 3), isVertical: true)
         human.addShipToGrid(largeShip)
         
         let xLargeShip = Ship(length: 5, location: GridLocation(x: 7, y: 2), isVertical: true, isWooden: true)
         human.addShipToGrid(xLargeShip)
         
-        let mine1 = Mine(location: GridLocation(x: 6, y: 0), guaranteesHit: true, penaltyText: "Hit by mine1")
+        let mine1 = Mine(location: GridLocation(x: 6, y: 0), penaltyText: "Hit by mine1")
         human.addMineToGrid(mine1)
         
-        let mine2 = Mine(location: GridLocation(x: 3, y: 3), guaranteesHit: true, penaltyText: "Hit by mine1")
+        let mine2 = Mine(location: GridLocation(x: 3, y: 3), guaranteesHit: false, penaltyText: "Hit by mine1")
         human.addMineToGrid(mine2)
         
         let seamonster1 = SeaMonster(location: GridLocation(x: 5, y: 6))
